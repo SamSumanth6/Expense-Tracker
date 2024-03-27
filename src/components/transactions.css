@@ -1,0 +1,17 @@
+.heading{
+    color: white;
+}
+
+.trans-div{
+    background-color: white;
+    width: 1000px;
+    height: 280px;
+    margin: 0px 20px;
+    border-radius: 15px;
+    max-width: 100vw;
+
+}
+
+.transactions{
+    float: left;
+}

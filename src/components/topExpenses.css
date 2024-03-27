@@ -1,0 +1,15 @@
+.heading{
+    color: white;
+}
+
+.topExp-div{
+    background-color: white;
+    width: 400px;
+    height: 280px;
+    border-radius: 15px;
+    margin-right: 20px;
+}
+
+.TE{
+    float: right;
+}
