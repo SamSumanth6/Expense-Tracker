@@ -1,4 +1,5 @@
 import './heroSection.css'
+import HeroChart from './heroCharts';
 
 const  HeroSection = ()=>{
     return(
@@ -13,7 +14,23 @@ const  HeroSection = ()=>{
                     <button className='expenses-btn'>+Add Expense</button>
                 </div>
             </div>
-            <div className='chart-div'></div>
+            <div className='chart-div'>
+                <HeroChart />
+                <div className='labels'>
+                    <div>
+                        <div className='color1'></div>
+                        <p>Food</p>
+                    </div>
+                    <div>
+                        <div className='color2'></div>
+                        <p>Travel</p>
+                    </div>
+                    <div>
+                        <div className='color3'></div>
+                        <p>Entertainment</p>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
