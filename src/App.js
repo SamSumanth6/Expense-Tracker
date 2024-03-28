@@ -13,6 +13,7 @@ function App() {
         <Transactions />
         <TopExpenses />
       </div>
+      
     </div>
   );
 }
