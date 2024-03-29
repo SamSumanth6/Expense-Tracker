@@ -29,6 +29,7 @@
   .transaction-date {
     font-size: 0.8rem; /* Adjust font size as needed */
     color: #333; /* Adjust amount color as needed */
+    margin: 0px 30px
   }
 
   .list-item{
@@ -64,4 +65,15 @@
 
   .transaction-amount{
     margin: 10px;
+  }
+
+  .item-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .item-name span{
+    margin: 0px 10px;
   }

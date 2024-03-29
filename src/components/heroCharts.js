@@ -5,7 +5,6 @@ const data = [
   { name: 'Group A', value: 400 },
   { name: 'Group B', value: 300 },
   { name: 'Group C', value: 300 },
-
 ];
 
 const COLORS = ['#0088FE','#FFBB28', '#FF8042'];
@@ -24,7 +23,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export default class HeroChart extends PureComponent {
-  static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
+  
 
   render() {
     return (

@@ -1,34 +1,27 @@
 import './transactions.css';
+import { IoPizzaOutline } from "react-icons/io5";
+import { FiGift } from "react-icons/fi";
+import { MdModeOfTravel } from "react-icons/md";
 import { useState } from 'react';
 
-const Transactions = () => {
-  const [transactions, setTransactions] = useState([
-    { id: 1, item: 'Samosa', date: '2024-03-28', amount: 10, type: 'food' },
-    { id: 2, item: 'Movie Ticket', date: '2024-03-27', amount: 150, type: 'entertainment' },
-    { id: 3, item: 'Groceries', date: '2024-03-26', amount: 200, type: 'food' },
-    { id: 4, item: 'Coffee', date: '2024-03-25', amount: 3.50, type: 'food' },
-    { id: 5, item: 'Taxi', date: '2024-03-24', amount: 45, type: 'travel' },
-    { id: 6, item: 'Restaurant', date: '2024-03-23', amount: 75, type: 'food' },
-    { id: 7, item: 'Book', date: '2024-03-22', amount: 25, type: 'entertainment' },
-    { id: 8, item: 'Gym Membership', date: '2024-03-21', amount: 50, type: 'entertainment' },
-  ]);
-
+const Transactions = ({ transactionsData, setTransactionsData }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Number of items per page
-
+  const itemsPerPage = 3; 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const totalPages = Math.ceil(transactions.length / itemsPerPage);
+  const totalPages = Math.ceil(transactionsData.length / itemsPerPage);
 
-  const paginatedTransactions = transactions.slice(
+  const paginatedTransactions = transactionsData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
   const deleteTransaction = (id) => {
-    setTransactions(transactions.filter((transaction) => transaction.id !== id));
+    const updatedTransactionsData = transactionsData.filter(transaction => transaction.id !== id);
+    setTransactionsData(updatedTransactionsData);
+    localStorage.setItem('transactionsData', JSON.stringify(updatedTransactionsData));
   };
 
   return (
@@ -40,10 +33,19 @@ const Transactions = () => {
             <li key={transaction.id} className='list-item'>
               <div className="transaction-details">
                 <div className="item-info">
-                  <span className="item-name">{transaction.item}</span>
+                  <div className='item-name'>
+                    <div>
+                      {transaction.category === 'Food' && <IoPizzaOutline />}
+                      {transaction.category === 'Entertainment' && <FiGift />}
+                      {transaction.category === 'Travel' && <MdModeOfTravel />}
+                    </div>
+                    <span className="item-name">{transaction.title}</span>
+                  </div>
                   <div>
-                  <span className="transaction-amount">₹{transaction.amount.toFixed(2)}</span>
-                  <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
+                    <span className="transaction-amount">
+                      ₹{transaction.price ? transaction.price.toFixed(2) : 'N/A'}
+                    </span>
+                    <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
                   </div>
                 </div>
                 <span className="transaction-date">
@@ -68,7 +70,7 @@ const Transactions = () => {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
               <button
                 key={pageNumber}
-                className={`page-btn ${currentPage === pageNumber ? 'active blue' : ''}`} // Added 'blue' class to active page
+                className={`page-btn ${currentPage === pageNumber ? 'active blue' : ''}`}
                 onClick={() => handlePageChange(pageNumber)}
               >
                 {pageNumber}
